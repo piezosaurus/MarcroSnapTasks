@@ -39,5 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Task 3 - fake spotify" />
+
+        <com.example.marcrosnaptasks.GraphView
+            android:id="@+id/graph"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

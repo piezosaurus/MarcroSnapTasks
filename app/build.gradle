@@ -33,8 +33,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.spotify.android:auth:1.2.5' // add this for spotify
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
