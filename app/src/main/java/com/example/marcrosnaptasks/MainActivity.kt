@@ -27,14 +27,25 @@ class MainActivity : AppCompatActivity() {
         val min = 0
 
         val geo = Uri.parse("geo:47.6,-122.3")
-        val url = "https://piezosaurus.github.io/"
-        val phoneNum = "6478237838"
+        val url = "sadfao/"
+        val phoneNum = "2895521240"
 
         val task1: Button = findViewById(R.id.button1)
         task1.setOnClickListener {
 //            tasks.timer(msg1, secs)
-            tasks.dialPhoneNumber(phoneNum)
+//            val requestPermissionLauncher =
+//                registerForActivityResult(
+//                    ActivityResultContracts.RequestPermission()
+//                ) { isGranted: Boolean ->
+//                    if (isGranted) {
+//                        tasks.callPhoneNumber(phoneNum)
+//                    } else {
+//                        Log.i("PRINT", "permission not granted")
+//                    }
+//                }
+            tasks.callPhoneNumber(phoneNum)
         }
+
 
         val task2: Button = findViewById(R.id.button2)
         task2.setOnClickListener {

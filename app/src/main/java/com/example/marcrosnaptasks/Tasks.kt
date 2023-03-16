@@ -1,12 +1,17 @@
 package com.example.marcrosnaptasks;
 
+import android.Manifest.permission.CALL_PHONE
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.AlarmClock
 import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
+import android.webkit.URLUtil
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.content.ContextCompat
 import java.util.*
 
 
@@ -38,20 +43,28 @@ public class Tasks(val activity: Activity, val context: Context) {
     }
     public fun website (url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        if (intent.resolveActivity(context.packageManager) != null) {
-            context.startActivity(intent)
+        if (URLUtil.isValidUrl(url)) {
+            if (intent.resolveActivity(context.packageManager) != null) {
+                context.startActivity(intent)
+            }
         }
+        else {
+            Log.i("PRINT", "invalid url")
+        }
+
         Log.i("PRINT", "website")
     }
 
-    fun dialPhoneNumber(phoneNumber: String) {
-        val intent = Intent(Intent.ACTION_CALL)
-        intent.data = Uri.parse("tel:$phoneNumber")
-//        val intent = Intent(Intent.ACTION_CALL).apply {
-//            data = Uri.parse("tel:$phoneNumber")
-//        }
-        if (intent.resolveActivity(context.packageManager) != null) {
-            context.startActivity(intent)
+    fun callPhoneNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_CALL).apply {
+            data = Uri.parse("tel:$phoneNumber")
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (ContextCompat.checkSelfPermission(context, CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            context.startActivity(intent);
+        } else {
+            requestPermissions(activity, arrayOf<String>(CALL_PHONE), 1);
         }
     }
 
